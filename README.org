@@ -1,0 +1,7 @@
+#+title: John's Garage
+
+This repo serves as a place that consolidates all of my =docker-compose= files for applications as well has helpful commands for select tools. 
+
+* Docker Compose Files
+
+It is important to note that the docker compose files may have a =.env= file that must be created within the same directory as the =docker-compose.yaml=. At times the name for the =docker-compose.yaml= will be different and this is by design. It was done to clarify particular configs that I use for certain cases, however in practice or in production, make sure to change it to =docker-compose.yaml=. 
