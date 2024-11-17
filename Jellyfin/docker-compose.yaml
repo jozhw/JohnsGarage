@@ -1,0 +1,17 @@
+version: "3"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    env_file:
+      - .env
+    environment:
+      - PUID=${ENV_PUID}
+      - PGID=${ENV_PGID}
+      - TZ=${TIMEZONE}
+    volumes:
+      - ${SERVICES_DIR}/jellyfin-config:/config
+      - ${DATA_DIR}:/media
+    ports:
+      - 8096:8096
+    restart: unless-stopped
