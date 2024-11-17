@@ -8,10 +8,12 @@ services:
   server:
     image: gitea/gitea:latest
     container_name: gitea
+    env_file:
+      - .env
     environment:
-      - USER_UID=1000
-      - USER_GID=1000
-      - TZ=America/Chicago
+      - USER_UID=${ENV_USER_UID}
+      - USER_GID=${ENV_USER_GID}
+      - TZ=${TIMEZONE}
     restart: always
     networks:
       - gitea
