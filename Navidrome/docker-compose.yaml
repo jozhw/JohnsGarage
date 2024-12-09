@@ -1,0 +1,26 @@
+services:
+  navidrome:
+    container_name: navidrome
+    env_file:
+      - .env
+    image: deluan/navidrome:latest
+    user: ${USER_ID}:${GROUP_ID} # should be owner of volumes
+    ports:
+      - ${PORT}:${PORT_DOCKER}
+    restart: unless-stopped
+    environment:
+      # Optional: put your config options customization here. Examples:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info  
+      ND_SESSIONTIMEOUT: 24h
+      ND_AUTOIMPORTPLAYLISTS: true
+      ND_DEFAULTTHEME: Spotify-ish
+      ND_BASEURL: ${ND_BASEURL}
+      ND_LASTFM_ENABLED: true
+      ND_LASTFM_APIKEY: ${ND_LASTFM_APIKEY}
+      ND_LASTFM_SECRET: ${ND_LASTFM_SECRET}
+      ND_SPOTIFY_ID: ${ND_SPOTIFY_ID}
+      ND_SPOTIFY_SECRET: ${ND_SPOTIFY_SECRET}
+    volumes:
+      - ${PATH_DATA}:/data
+      - ${PATH_MUSIC}:/music:ro
