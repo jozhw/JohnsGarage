@@ -4,6 +4,9 @@ services:
     env_file:
       - .env
     image: deluan/navidrome:latest
+    labels:
+        tsdproxy.enable: "true"
+        tsdproxy.name: "navidrome"
     user: ${USER_ID}:${GROUP_ID} # should be owner of volumes
     ports:
       - ${PORT}:${PORT_DOCKER}

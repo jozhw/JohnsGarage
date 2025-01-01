@@ -1,5 +1,11 @@
 #+title: Navidrome
 
+* Labels
+
+For =tsdproxy=, which is a proxy server for tailscale to facilitate the inclusion of docker images to the *Tailscale* network.
+
+Must make sure that *tsdproxy* container is running before running this container if using tailscale.
+
 * =.env= variables
 
 ** =PATH_*=
