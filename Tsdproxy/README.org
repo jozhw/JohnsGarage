@@ -1,0 +1,41 @@
+#+title: Tsdproxy
+
+* Setup
+
+Must define a volume named =tsdproxydata= using the following shell command to be used:
+
+#+begin_src shell
+
+  docker volume create tsdproxydata
+
+#+end_src
+
+An alternative is to create a file in the file system which would be preferred. If that is the case then make sure you specify a =./= to indicate that it is a file on the filesystem. 
+
+** Custom Domain Names
+
+Given the method of setting up is via the *Magic DNS* on Tailscale (using the full domain provided by Tailscale), when creating a subdomain for a custom domain, you just need to create a cname with the name of the subdomain and the value being the full domain for the tsdproxy service (not the machine where the service is run because tsdproxy puts the service on the Tailscale network).
+
+* =.env= variables
+
+** =TSDPROXY_*=
+
+The =TSDPROXY_HOSTNAME= is the machine IP address or full domain name on the Tailscale network. This must be used in order for =tsdproxy= to work. If you are using the full domain name, you must have Magic DNS activated on Tailscale.
+
+#+begin_src shell
+
+  TSDPROXY_HOSTNAME=${TS_HOSTNAME}
+
+#+end_src
+
+
+
+* Running
+
+Within the root directory where the =docker-compose.yaml= file and the =.env= file are stored.
+
+#+begin_src shell
+
+  docker-compose up -d
+
+#+end_src
