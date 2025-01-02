@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    env_file:
+      - .env
+    labels:
+        tsdproxy.enable: "true"
+        tsdproxy.name: "vaultwarden"
+    volumes:
+      - ${PATH_DATA}:/data/
+    restart: unless-stopped
+    ports:
+      - ${PORT_1}:80
+    security_opt:
+      - no-new-privileges:true
