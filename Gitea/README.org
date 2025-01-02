@@ -1,0 +1,38 @@
+#+title: Gitea
+
+* Labels
+
+For =tsdproxy=, which is a proxy server for tailscale to facilitate the inclusion of docker images to the *Tailscale* network.
+
+Must make sure that *tsdproxy* container is running before running this container if using tailscale.
+
+* =*-docker-compose.yaml= files
+
+Depending on which type of database you want to use, make sure to change the name of that file to =docker-compose.yaml=.
+
+* =.env= variables
+
+** =DB_*=
+
+These variables are if you are using the =postgres= database.
+
+*** =DB_NAME=
+
+Name of the database.
+
+*** =DB_USER=
+
+Username for accessing the database.
+
+*** =DB_USER_PASSWORD=
+
+Username password.
+
+** =ENV_*=
+
+*** =ENV_USER_UID=
+
+*** =ENV_USER_GID=
+
+** =TIMEZONE=
+
