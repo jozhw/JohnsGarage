@@ -1,3 +1,6 @@
 #+title: Portainer
 
-For security measures, portainer will not have a subdomain, rather the port number must be provided to access.
+* Troubleshooting
+
+Oldly, for the Synology build, port =9433= works but port =8000= does not work. Decided to stick with port =9000=
+

@@ -2,10 +2,12 @@ services:
   portainer-ce:
     env_file:
       - .env
+    container_name: portainer
+    labels:
+        tsdproxy.enable: "true"
+        tsdproxy.name: "portainer"
     ports:
       - ${PORT_1}:${PORT_1}
-      - ${PORT_2}:${PORT_2}
-    container_name: portainer
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
