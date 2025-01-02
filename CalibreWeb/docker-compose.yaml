@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  calibre-web:
+    image: linuxserver/calibre-web:latest
+    container_name: calibre-web
+    labels:
+        tsdproxy.enable: "true"
+        tsdproxy.name: "calibre-web"
+    env_file:
+      - .env
+    restart: always
+    network_mode: bridge
+    ports:
+      - ${HOST_PORT_1}:${CONTAINER_PORT_1}
+    volumes:
+      - ${PATH_CONFIG}:/config:rw
+      - ${PATH_LIBRARY}:/books:ro
+    environment:
+      - PATH=/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/root
+      - LANGUAGE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - TERM=xterm
+      - S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+      - S6_VERBOSITY=1
+      - S6_STAGE2_HOOK=/docker-mods
+      - VIRTUAL_ENV=/lsiopy
+      - LSIO_FIRST_PARTY=true
