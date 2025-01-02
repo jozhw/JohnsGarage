@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  calibre:
+    image: linuxserver/calibre:latest
+    container_name: calibre
+    labels:
+        tsdproxy.enable: "true"
+        tsdproxy.name: "calibre"
+    env_file:
+      - .env
+    restart: always
+    environment:
+      - PATH=/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/config
+      - LANGUAGE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - TERM=xterm
+      - S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+      - S6_VERBOSITY=1
+      - S6_STAGE2_HOOK=/docker-mods
+      - VIRTUAL_ENV=/lsiopy
+      - DISPLAY=:1
+      - PERL5LIB=/usr/local/bin
+      - OMP_WAIT_POLICY=PASSIVE
+      - GOMP_SPINCOUNT=0
+      - START_DOCKER=true
+      - PULSE_RUNTIME_PATH=/defaults
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - LSIO_FIRST_PARTY=true
+      - CUSTOM_PORT=${CONTAINER_PORT_1}
+      - CUSTOM_HTTPS_PORT=8181
+      - TITLE=Calibre
+      - QTWEBENGINE_DISABLE_SANDBOX=1
+    ports:
+      - ${HOST_PORT_1}:${CONTAINER_PORT_1}
+      - ${HOST_PORT_2}:${CONTAINER_PORT_2}
+    volumes:
+      - ${PATH_CONFIG}:/config:rw
+      - ${PATH_LIBRARY}:/config/wuCalibre:rw
+      - ${PATH_DOWNLOADS}:/config/downloads:rw
+    shm_size: "64M"
+    logging:
+      driver: "db"
+
+networks:
+  default:
+    driver: bridge
