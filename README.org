@@ -1,7 +1,14 @@
 #+title: John's Garage
 
-This repo serves as a place that consolidates all of my =docker-compose= files for applications as well has helpful commands for select tools. 
+This repo serves as a place that consolidates all of my services that I run in my home laboratory along with all of the instructions and config files necessary to get these applications up and running. 
 
-* Docker Compose Files
+* Structure
 
-It is important to note that the docker compose files may have a =.env= file that must be created within the same directory as the =docker-compose.yaml=. At times the name for the =docker-compose.yaml= will be different and this is by design. It was done to clarify particular configs that I use for certain cases, however in practice or in production, make sure to change it to =docker-compose.yaml=. 
+Each service has its own directory and within each service directory contains subdirectories that specify the major services used for setup. This is done so that replicating would be easy — minimal changes needed to get things working.
+
+
+* Docker
+
+To be consistent with the philosophy of reproducibility, =docker-compose.yaml= files are used if possible. 
+
+It is important to note that the docker compose files may have a =.env= file that must be created within the same directory as the =docker-compose.yaml=. 
