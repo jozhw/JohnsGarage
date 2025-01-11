@@ -1,0 +1,11 @@
+#+title: Beets
+
+* Docker
+
+** Accessing Command Line
+
+#+begin_src shell
+
+  docker exec -it beets /bin/bash
+
+#+end_src

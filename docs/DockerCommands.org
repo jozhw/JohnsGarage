@@ -1,0 +1,11 @@
+#+title: Docker Commands
+
+* docker-compose containers
+
+To view active containers, you must be in the root directory of where the =docker-compose= command was called.
+
+#+begin_src shell
+
+  docker-compose ps
+
+#+end_src

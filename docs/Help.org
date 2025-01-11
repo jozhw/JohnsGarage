@@ -1,0 +1,58 @@
+#+title: Help
+
+* Obtain =UID= and =GID=
+
+The =UID= is known as the user id and the =GID= is known as the group id.
+
+** =UID=
+
+*** What is it?
+
+The =UID= is a unique number assigned to each user on the system. Every user account has a corresponding =UID=, which the system uses internally to reference the user. This is how the operating system knows which user is performing an action, such as running a command, accessing a file, or making changes.
+
+*** How is it used?
+
+When a user logs in or performs any action, their =UID= is associated with the process they initiate. The =UID= is used to determine the user's permissions and what files or resources they can access. For example, if a user tries to access a file, the system will check the file's permissions and compare them to the UID of the user requesting access to decide whether or not access is granted.
+
+*** Special =UIDs=
+
+- =UID= 0 is reserved for the root user, which is the superuser or administrator with full control over the system.
+- Other =UIDs= (e.g., 1000, 1001) are assigned to regular users.
+
+*** Obtaining =UIDs=
+
+#+begin_src shell
+
+  id -u
+  #or
+  id -u <username>
+
+#+end_src
+
+
+** =GID=
+
+*** What is it?
+
+The =GID= is a unique number assigned to each group on the system. Every group (whether it's a system or user-created group) has its own =GID=, and each user can belong to one or more groups. Groups are used to organize users and set permissions for multiple users at once.
+
+*** How is it used?
+
+Groups help manage file permissions in a more efficient way. When a file is created, it is assigned a group. The =GID= determines which group has ownership of the file. If a user belongs to a group (determined by their =GID=), they might be able to access certain files or directories that the group has permissions for.
+
+For example, a user might have a primary group (typically with the same name as the user) and additional secondary groups, like a sudo group for administrative tasks.
+
+*** Special =GIDs=
+
+- =GID= 0 is typically associated with the root group, which has special permissions for system administration tasks.
+- Other =GIDs= are assigned to different groups on the system. For example, sudo might have =GID= 27, and a user's primary group might have the same =GID= as their =UID=.
+
+*** Getting =GIDs=
+
+#+begin_src shell
+
+  id -g
+  # or
+  id -g <username>
+
+#+end_src

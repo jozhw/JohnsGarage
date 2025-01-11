@@ -1,75 +1,31 @@
 #+title: Navidrome
 
-* Labels
 
-For =tsdproxy=, which is a proxy server for tailscale to facilitate the inclusion of docker images to the *Tailscale* network.
+* Docker
 
-Must make sure that *tsdproxy* container is running before running this container if using tailscale.
+** General Troubleshooting
 
-* =.env= variables
-
-** =PATH_*=
-
-*** =PATH_DATA=
-
-A *string* path to the system's navidrome data file.
-
-*** =PATH_MUSIC=
-
-A *string* path to the system's music directory — where the music library is located.
-
-** =*_ID=
-
-Run the following in your terminal to ge the =USER_ID= and =GROUP_ID=:
-
-#+begin_src shell
-  id - u # gets USER_ID
-  id - g # gets GROUP_ID
-#+end_src
-
-*** =USER_ID=
-
-The user id that the docker container will run as; formatted as an *int*.
-
-*** =GROUP_ID=
-
-The group id that the docker container will run as; formatted as an *int*
-
-** =PORT_*=
-
-*** =PORT=
-
-The port of the system formatted as an *int*
-
-*** =PORT_DOCKER=
-
-The port of the docker container formatted as an *int*
-
-** =ND_*=
-
-Navidrome customizations.
-
-*** =ND_BASEURL=
-
-Path formated in *string*. Basically this is where the working directory should be.
-
-*** =ND_LASTFM_*=
-
-- ND_LASTFM_APIKEY
-- ND_LASTFM_SECRET
-
-*** =ND_SPOTIFY_*=
-
-- ND_SPOTIFY_ID
-- ND_SPOTIFY_SECRET
-
-
-* Troubleshooting
-
-** Not all Tracks Appearing in Album
+*** Not all Tracks Appearing in Album
 
 This is usually do to the fact that navidrome scanned that directory already and after naidrome has scanned, it will not scan again — may have to do with keeping things smooth and fast. Thus, you should run the following command with the container still running so that it will force scan the entire library.
 
 #+begin_src shell
 sudo docker-compose exec navidrome /app/navidrome scan -f
 #+end_src
+
+** =docker-tsdproxy=
+
+=tsdproxy= is used as a proxy server for services hosted on the *Tailscale* network. 
+
+*** Labels
+
+For =tsdproxy= to work, you must pass label variables in the =docker-compose.yaml=.
+
+#+begin_src shell
+
+  tsdproxy.enable: "true"
+  tsdproxy.name: "navidrome"
+
+#+end_src
+
+=tsdproxy= will bind to the docker socket of the host machine to find containers with the =tsdproxy.*= labels to create a machine on the *Tailscale* network.

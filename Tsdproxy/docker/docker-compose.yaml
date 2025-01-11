@@ -7,6 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${PATH_DATA}:/data
+      - ${PATH_CONFIG}:/config
     environment:
       - TSDPROXY_AUTHKEY=${TS_AUTHKEY}
       - TSDPROXY_HOSTNAME=${TS_HOSTNAME}

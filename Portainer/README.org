@@ -1,6 +1,10 @@
 #+title: Portainer
 
-* Troubleshooting
+* Docker
+
+** General Troubleshooting
 
 Oldly, for the Synology build, port =9433= works but port =8000= does not work. Decided to stick with port =9000=
+
+** =docker-tsdproxy=
 

@@ -1,11 +1,5 @@
 #+title: Gitea
 
-* Labels
-
-For =tsdproxy=, which is a proxy server for tailscale to facilitate the inclusion of docker images to the *Tailscale* network.
-
-Must make sure that *tsdproxy* container is running before running this container if using tailscale.
-
 * =*-docker-compose.yaml= files
 
 Depending on which type of database you want to use, make sure to change the name of that file to =docker-compose.yaml=.
