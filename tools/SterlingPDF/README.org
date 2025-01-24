@@ -1,0 +1,11 @@
+#+title: Stirling PDF
+
+* Troubleshooting
+
+** Non-port 8080
+
+If you are using a port that is not =8080= you must change the port in the =custom_configs.yml=, otherwise it will default to port =8080= and you will not be able to access the application.
+
+Please see this [[https://github.com/Stirling-Tools/Stirling-PDF/issues/1173#issuecomment-2095333432][issue]].
+
+

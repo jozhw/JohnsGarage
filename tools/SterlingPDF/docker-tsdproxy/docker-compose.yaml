@@ -1,0 +1,22 @@
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    env_file:
+      - .env
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.name: "pdf"
+    environment:
+      - PUID=${ENV_PUID}
+      - PGID=${ENV_PGID}
+    ports:
+      - 8081:8081
+    volumes:
+      - ./StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - ./StirlingPDF/extraConfigs:/configs
+      - ./StirlingPDF/customFiles:/customFiles/
+      - ./StirlingPDF/logs:/logs/
+      - ./StirlingPDF/pipeline:/pipeline/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - LANGS=en_GB
