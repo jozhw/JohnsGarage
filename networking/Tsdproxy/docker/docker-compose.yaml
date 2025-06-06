@@ -8,11 +8,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${PATH_DATA}:/data
       - ${PATH_CONFIG}:/config
-    environment:
-      - TSDPROXY_AUTHKEY=${TS_AUTHKEY}
-      - TSDPROXY_HOSTNAME=${TS_HOSTNAME}
-      - DOCKER_HOST=${PATH_DOCKER_HOST}
+      - ${PATH_SECRETS}:/secrets
     restart: unless-stopped
 volumes:
-  tsdproxydata:  # This defines the named volume
-    external: true  # This is optional, only needed if the volume already exists outside of Compose
+  tsdproxydata: # This defines the named volume
+    external: true # This is optional, only needed if the volume already exists outside of Composee
